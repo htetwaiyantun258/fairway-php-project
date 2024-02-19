@@ -19,9 +19,22 @@
 </head>
 
 <body>
-    <div class="container mt-5 ">
+    <div class="container" style="max-width: 800px;">
         <h1 class="mb-3 ">Hary Yan</h1>
-        <ul class="list-group" style="max-width: 400px;">
+        <?php if(isset($_GET['error'])): ?>
+        <div class="alert alert-warning">Cannot upload file</div>
+        <?php endif ?>
+
+        <?php if(file_exists("_actions/photos/profile.jpg")) : ?>
+        <img src="_actions/photos/profile.jpg" class="img-thumbnail" width="200" height="200">
+        <?php endif ?>
+
+        <form action="_actions/upload.php" method="post" enctype="multipart/form-data" class="input-group my-4">
+            <input type="file" name="photo" class="form-control" id="">
+            <button class="btn btn-secondary">Upload</button>
+        </form>
+
+        <ul class="list-group">
             <li class="list-group-item">
                 <b>Email</b> hary@gmail.com
             </li>
