@@ -1,9 +1,9 @@
-oop
+## oop
 
-+syntax 
-+design  pattern
-3 SOLID
++ syntax 
++ design  pattern
++ SOLID
 
-** problem & solution
+#### problem & solution
 
 
