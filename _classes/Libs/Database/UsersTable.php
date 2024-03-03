@@ -13,11 +13,38 @@ class UsersTable
     
     public function insert($data){
         try{
-            $statment = $this->db->prepare(
+            $statement = $this->db->prepare(
                 "INSERT INTO users (name,email,phone,address,password,created_at) Values
                 (:name,:email,:phone,:address,:password,NOW())");
-                $statment->execute($data);
+                $statement->execute($data);
                 return $this->db->lastInsertId();
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            exit();
+        }
+    }
+
+    public function find($email, $password)
+    {
+        try{
+            $statement = $this->db->prepare(
+                "SELECT * FROM users WHERE email=:email AND password=:password"
+            );
+            $statement->execute(["email" => $email, "password" => $password]);
+            $user = $statement->fetch();
+            return $user;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            exit();
+        }
+    }
+
+    public function updatePhoto($id, $photo){
+        try{
+            $statement = $this->db->prepare("UPDATE users SET photo=:photo WHERE id=:id");
+            $statement->execute(["id" => $id , "photo" => $photo ]);
+
+            return $statement->rowCount();
         }catch(PDOException $e){
             echo $e->getMessage();
             exit();

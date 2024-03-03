@@ -27,7 +27,14 @@ include("vendor/autoload.php");
         <div class="alert alert-warning">
             Login Fail
         </div>
+        <?php endif ?>
+
+        <?php if(isset($_GET["login"])) :?>
+        <div class="alert alert-info">
+            Account created, please login
+        </div>
         <?php endif?>
+
         <form action="_actions/login.php" method="post">
             <input type="email" name="email" class="form-control mb-2" placeholder="Email" require>
             <input type="password" name="password" class="form-control mb-2" placeholder="Password" require>

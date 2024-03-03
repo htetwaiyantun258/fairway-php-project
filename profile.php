@@ -1,6 +1,6 @@
 <?php
 include("vendor/autoload.php");
-
+    
     use Helpers\Auth;
     $user = Auth::check();
 
@@ -18,13 +18,13 @@ include("vendor/autoload.php");
 
 <body>
     <div class="container" style="max-width: 800px;">
-        <h1 class="mb-3 ">Hary Yan</h1>
+        <h1 class="mb-3 "><?= $user->name ?></h1>
         <?php if(isset($_GET['error'])): ?>
         <div class="alert alert-warning">Cannot upload file</div>
         <?php endif ?>
 
         <?php if(file_exists("_actions/photos/profile.jpg")) : ?>
-        <img src="_actions/photos/profile.jpg" class="img-thumbnail" width="200" height="200">
+        <img src="_actions/photos/<?= $user->photo ?>" class="img-thumbnail" width="200" height="200">
         <?php endif ?>
 
         <form action="_actions/upload.php" method="post" enctype="multipart/form-data" class="input-group my-4">
@@ -34,13 +34,13 @@ include("vendor/autoload.php");
 
         <ul class="list-group">
             <li class="list-group-item">
-                <b>Email</b> hary@gmail.com
+                <b>Email :</b> <?= $user->email ?>
             </li>
             <li class="list-group-item">
-                <b>Phone :</b> 08 898 567 234
+                <b>Phone :</b> <?= $user->phone ?>
             </li>
             <li class="list-group-item">
-                <b>Address</b> budar Street
+                <b>Address</b> <?= $user->address ?>
             </li>
         </ul>
         <br>
