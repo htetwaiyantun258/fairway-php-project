@@ -5,6 +5,7 @@ include("vendor/autoload.php");
 use Helpers\Auth;
 use Libs\Database\MySQL;
 use Libs\Database\UsersTable;
+use Faker\Factory as Faker;
 
 $table = new UsersTable(new MySQL);
 // $id = $table->insert([
@@ -16,5 +17,19 @@ $table = new UsersTable(new MySQL);
 // ]);
 // echo $id;
 
-$find_user = $table->find("hary@gmail.com","hary123");
-echo $find_user->email;
+// $find_user = $table->find("hary@gmail.com","hary123");
+// echo $find_user->email;
+
+$faker = Faker::create();
+echo "Starting... <br>";
+
+for($i=0; $i<20; $i++){
+    $table->insert([
+        "name" => $faker->name,
+        "email" => $faker->email,
+        "phone" => $faker->phoneNumber,
+        "address" => $faker->address,
+        "password" => "password",
+    ]);
+}
+echo "Done....";

@@ -11,6 +11,17 @@ class UsersTable
         $this->db = $mysql->connect();
     }
     
+    public function getAll(){
+        try{
+            $statement = $this->db->query("SELECT users.*, roles.name AS role
+            FROM users LEFT JOIN roles
+            ON users.role_id = roles.id");
+            return $statement->fetchAll();
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            exit();
+        }
+    }
     public function insert($data){
         try{
             $statement = $this->db->prepare(
@@ -49,5 +60,16 @@ class UsersTable
             echo $e->getMessage();
             exit();
         }
+    }
+
+    public function delete($id){
+       try{
+        $statement = $this->db->prepare("Delete FROM users WHERE id = :id");
+        $statement->execute(["id" => $id]);
+        return $statement->rowCount();
+       }catch(PDOException $e){
+            echo $e->getMessage();
+            exit();
+       }
     }
 }
