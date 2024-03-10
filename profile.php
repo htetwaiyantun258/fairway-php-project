@@ -46,6 +46,10 @@ include("vendor/autoload.php");
         <br>
         <a href="_actions/logout.php">Logout</a>
         <a href="admin.php">Admin</a>
+
+
+
+
     </div>
 </body>
 

@@ -35,6 +35,12 @@ include("vendor/autoload.php");
         </div>
         <?php endif?>
 
+        <?php if(isset($_GET["suspended"])) :?>
+        <div class="alert alert-danger">
+            Account Suspended
+        </div>
+        <?php endif?>
+
         <form action="_actions/login.php" method="post">
             <input type="email" name="email" class="form-control mb-2" placeholder="Email" require>
             <input type="password" name="password" class="form-control mb-2" placeholder="Password" require>
